@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillBharat – India Ka #1 Online Learning Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f4;
+  --dark: #0f0e0a;
+  --ink: #1a1916;
+  --orange: #e85d04;
+  --orange2: #f48c06;
+  --cream: #fff8ee;
+  --cream2: #f5efe3;
+  --muted: #7a6f5e;
+  --border: #e8e0d0;
+  --green: #2d6a4f;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 60px;
+  background: rgba(250,248,244,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900; font-size: 1.6rem; color: var(--ink);
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--orange); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(--orange); }
+.nav-cta {
+  background: var(--orange); color: #fff;
+  border: none; padding: 11px 26px; border-radius: 100px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: .88rem;
+  cursor: pointer; transition: all .2s;
+}
+.nav-cta:hover { background: var(--orange2); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(232,93,4,.3); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 60px;
+  padding: 120px 60px 80px;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute; right: 0; top: 0;
+  width: 50%; height: 100%;
+  background: var(--cream2);
+  z-index: 0;
+}
+.hero-left { position: relative; z-index: 1; }
+.hero-right { position: relative; z-index: 1; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(232,93,4,.08); border: 1px solid rgba(232,93,4,.2);
+  padding: 6px 16px; border-radius: 100px;
+  font-size: .75rem; font-weight: 600; color: var(--orange);
+  text-transform: uppercase; letter-spacing: .08em;
+  margin-bottom: 24px;
+  animation: fadeUp .5s ease both;
+}
+.dot-live { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: blink 1.5s infinite; }
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 900; line-height: 1.1; letter-spacing: -1px;
+  animation: fadeUp .5s .1s ease both;
+}
+h1 em { color: var(--orange); font-style: italic; }
+
+.hero-sub {
+  color: var(--muted); font-size: 1.05rem; line-height: 1.75;
+  margin: 20px 0 36px; max-width: 480px;
+  animation: fadeUp .5s .2s ease both;
+}
+
+.hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  animation: fadeUp .5s .3s ease both;
+}
+.btn-main {
+  background: var(--orange); color: #fff;
+  padding: 15px 34px; border-radius: 100px; border: none;
+  font-weight: 700; font-size: 1rem; cursor: pointer;
+  transition: all .2s; display: flex; align-items: center; gap: 8px;
+}
+.btn-main:hover { background: var(--orange2); transform: translateY(-3px); box-shadow: 0 12px 28px rgba(232,93,4,.35); }
+.btn-ghost {
+  background: transparent; color: var(--ink);
+  padding: 15px 34px; border-radius: 100px; border: 2px solid var(--border);
+  font-weight: 600; font-size: 1rem; cursor: pointer; transition: all .2s;
+}
+.btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+/* ── HERO STATS ── */
+.hero-stats {
+  display: flex; gap: 32px; margin-top: 52px;
+  padding-top: 36px; border-top: 1px solid var(--border);
+  animation: fadeUp .5s .4s ease both;
+}
+.hstat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900; color: var(--ink);
+}
+.hstat-label { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+/* ── HERO CARD ── */
+.hero-card {
+  background: #fff; border-radius: 24px;
+  box-shadow: 0 32px 80px rgba(15,14,10,.12);
+  overflow: hidden; animation: fadeUp .6s .2s ease both;
+}
+.hcard-thumb {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange2) 50%, #ffd166 100%);
+  padding: 40px; text-align: center; position: relative; overflow: hidden;
+}
+.hcard-thumb::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.play-btn {
+  width: 72px; height: 72px; background: rgba(255,255,255,.2);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px; font-size: 1.8rem; backdrop-filter: blur(8px);
+  border: 2px solid rgba(255,255,255,.3); cursor: pointer; transition: all .2s;
+}
+.play-btn:hover { background: rgba(255,255,255,.35); transform: scale(1.05); }
+.hcard-thumb h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.3rem;
+  color: #fff; font-weight: 800; position: relative;
+}
+.hcard-body { padding: 24px 28px; }
+.course-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.meta-chip {
+  background: var(--cream2); border-radius: 100px; padding: 5px 14px;
+  font-size: .78rem; font-weight: 600; color: var(--muted);
+}
+.instructor {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 18px; border-top: 1px solid var(--border);
+}
+.inst-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-weight: 900; color: #fff; font-size: 1rem;
+}
+.inst-name { font-weight: 700; font-size: .9rem; }
+.inst-title { font-size: .78rem; color: var(--muted); }
+.enroll-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 18px; padding: 16px 0 0; border-top: 1px solid var(--border);
+}
+.price-tag { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--ink); }
+.price-tag small { font-size: .9rem; text-decoration: line-through; color: var(--muted); font-family: 'Plus Jakarta Sans'; }
+.enroll-btn {
+  background: var(--orange); color: #fff; border: none;
+  padding: 11px 24px; border-radius: 100px; font-weight: 700; font-size: .88rem;
+  cursor: pointer; transition: all .2s;
+}
+.enroll-btn:hover { background: var(--orange2); }
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  background: var(--dark); color: #fff;
+  padding: 20px 60px; display: flex; align-items: center;
+  justify-content: center; gap: 48px; flex-wrap: wrap;
+}
+.trust-item { display: flex; align-items: center; gap: 10px; font-size: .85rem; opacity: .8; }
+.trust-icon { font-size: 1.2rem; }
+
+/* ── SECTIONS ── */
+section { padding: 100px 60px; }
+.section-tag {
+  display: inline-block; background: rgba(232,93,4,.08);
+  border: 1px solid rgba(232,93,4,.2); border-radius: 100px;
+  padding: 5px 16px; font-size: .75rem; font-weight: 600;
+  color: var(--orange); text-transform: uppercase; letter-spacing: .08em;
+  margin-bottom: 16px;
+}
+h2 {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: clamp(2rem, 3.5vw, 2.8rem); letter-spacing: -1px;
+  line-height: 1.15;
+}
+.section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-top: 12px; max-width: 520px; }
+
+/* ── COURSES ── */
+.courses-bg { background: var(--cream2); }
+.courses-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+.courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+
+.course-card {
+  background: #fff; border-radius: 18px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(15,14,10,.06);
+  transition: all .3s; border: 1px solid var(--border);
+}
+.course-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(15,14,10,.12); }
+.course-thumb {
+  padding: 36px; text-align: center; font-size: 3rem;
+  position: relative;
+}
+.course-thumb.t1 { background: linear-gradient(135deg, #fff3cd, #ffe08a); }
+.course-thumb.t2 { background: linear-gradient(135deg, #d4edda, #a8d5b5); }
+.course-thumb.t3 { background: linear-gradient(135deg, #cce5ff, #99caff); }
+.course-thumb.t4 { background: linear-gradient(135deg, #f8d7da, #f5b8be); }
+.course-thumb.t5 { background: linear-gradient(135deg, #e2d9f3, #c5b3e6); }
+.course-thumb.t6 { background: linear-gradient(135deg, #d1ecf1, #9ed9e2); }
+.course-badge {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--orange); color: #fff;
+  border-radius: 100px; padding: 3px 10px; font-size: .7rem; font-weight: 700;
+}
+.course-body { padding: 22px; }
+.course-cat { font-size: .72rem; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+.course-body h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; line-height: 1.3; }
+.course-body p { font-size: .83rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.course-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 14px; border-top: 1px solid var(--border);
+}
+.course-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; }
+.course-info { font-size: .75rem; color: var(--muted); text-align: right; }
+.stars { color: #f4a60a; font-size: .8rem; }
+
+/* ── FEATURES ── */
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; max-width: 1100px; margin: 48px auto 0; }
+.feat-card {
+  padding: 32px 28px; border-radius: 16px; border: 1px solid var(--border);
+  background: #fff; transition: all .25s;
+}
+.feat-card:hover { border-color: var(--orange); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(232,93,4,.1); }
+.feat-icon { font-size: 2.2rem; margin-bottom: 16px; }
+.feat-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 800; margin-bottom: 10px; }
+.feat-card p { font-size: .85rem; color: var(--muted); line-height: 1.65; }
+
+/* ── INSTRUCTOR SECTION ── */
+.inst-section { background: var(--dark); color: #fff; }
+.inst-section .section-tag { background: rgba(232,93,4,.15); border-color: rgba(232,93,4,.3); }
+.inst-section h2 { color: #fff; }
+.inst-section .section-sub { color: #9a9080; }
+.inst-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1100px; margin: 48px auto 0; }
+.inst-card {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px; padding: 28px; text-align: center; transition: all .25s;
+}
+.inst-card:hover { background: rgba(232,93,4,.08); border-color: rgba(232,93,4,.3); transform: translateY(-4px); }
+.inst-pic {
+  width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 16px;
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.4rem; color: #fff;
+}
+.inst-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+.inst-card .inst-role { font-size: .78rem; color: #9a9080; margin-bottom: 14px; }
+.inst-card .inst-stat { font-size: .8rem; color: var(--orange); font-weight: 600; }
+
+/* ── TESTIMONIALS ── */
+.testi-section { background: var(--cream2); }
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 48px auto 0; }
+.testi-card {
+  background: #fff; border-radius: 16px; padding: 28px;
+  box-shadow: 0 4px 20px rgba(15,14,10,.05); border: 1px solid var(--border);
+}
+.testi-quote { font-size: 2.5rem; color: var(--orange); line-height: 1; margin-bottom: 12px; font-family: serif; }
+.testi-text { font-size: .9rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+.testi-name { font-weight: 700; font-size: .9rem; }
+.testi-course { font-size: .78rem; color: var(--orange); }
+.testi-stars { color: #f4a60a; font-size: .85rem; margin-top: 4px; }
+
+/* ── PRICING ── */
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 900px; margin: 48px auto 0; }
+.price-card {
+  background: #fff; border: 2px solid var(--border);
+  border-radius: 20px; padding: 36px 30px; transition: all .25s;
+}
+.price-card.hot { border-color: var(--orange); background: var(--cream); position: relative; }
+.hot-label {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--orange); color: #fff;
+  padding: 4px 20px; border-radius: 100px;
+  font-size: .75rem; font-weight: 700; white-space: nowrap;
+}
+.price-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(15,14,10,.1); }
+.price-name { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 12px; }
+.price-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; line-height: 1; }
+.price-num sup { font-size: 1.3rem; vertical-align: super; }
+.price-num sub { font-size: 1rem; color: var(--muted); font-family: 'Plus Jakarta Sans'; }
+.price-desc { font-size: .85rem; color: var(--muted); margin: 12px 0 24px; line-height: 1.6; }
+.price-list { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 30px; }
+.price-list li { font-size: .87rem; display: flex; align-items: center; gap: 10px; }
+.price-list li .check { color: var(--green); font-weight: 700; }
+.price-list li .cross { color: #ccc; }
+.price-btn-main {
+  width: 100%; padding: 14px; border-radius: 100px; border: none;
+  font-weight: 700; font-size: .95rem; cursor: pointer; transition: all .2s;
+}
+.price-card.hot .price-btn-main { background: var(--orange); color: #fff; }
+.price-card.hot .price-btn-main:hover { background: var(--orange2); }
+.price-card:not(.hot) .price-btn-main {
+  background: transparent; border: 2px solid var(--border); color: var(--ink);
+}
+.price-card:not(.hot) .price-btn-main:hover { border-color: var(--orange); color: var(--orange); }
+
+/* ── FAQ ── */
+.faq-list { max-width: 720px; margin: 48px auto 0; display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+}
+.faq-q {
+  padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between;
+  align-items: center; font-weight: 600; font-size: .95rem;
+  transition: color .2s; user-select: none;
+}
+.faq-q:hover { color: var(--orange); }
+.faq-q .icon { font-size: 1.2rem; transition: transform .3s; }
+.faq-a {
+  padding: 0 24px; max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
+  font-size: .88rem; color: var(--muted); line-height: 1.7;
+}
+.faq-item.open .faq-q { color: var(--orange); }
+.faq-item.open .faq-q .icon { transform: rotate(45deg); }
+.faq-item.open .faq-a { max-height: 200px; padding: 0 24px 20px; }
+
+/* ── CTA ── */
+.cta-section {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange2) 60%, #ffd166 100%);
+  text-align: center; padding: 100px 60px; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3C/g%3E%3C/svg%3E");
+}
+.cta-section h2 { color: #fff; position: relative; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 18px; }
+.cta-section p { color: rgba(255,255,255,.85); max-width: 480px; margin: 0 auto 36px; line-height: 1.7; position: relative; }
+.btn-white {
+  background: #fff; color: var(--orange);
+  padding: 16px 40px; border-radius: 100px; border: none;
+  font-weight: 800; font-size: 1.05rem; cursor: pointer;
+  transition: all .2s; position: relative;
+}
+.btn-white:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.15); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark); color: #fff;
+  padding: 60px 60px 28px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto 48px; }
+.footer-logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.5rem; margin-bottom: 14px; display: block; }
+.footer-logo span { color: var(--orange); }
+.footer-desc { color: #6b6052; font-size: .85rem; line-height: 1.7; max-width: 240px; }
+.footer-col h4 { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #9a9080; margin-bottom: 18px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { color: #6b6052; text-decoration: none; font-size: .85rem; transition: color .2s; }
+.footer-col ul li a:hover { color: var(--orange); }
+.footer-bottom {
+  max-width: 1100px; margin: 0 auto;
+  border-top: 1px solid rgba(255,255,255,.07); padding-top: 20px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+}
+.footer-bottom p { color: #4a3f30; font-size: .8rem; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; } 50% { opacity: .2; }
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+  .hero::before { display: none; }
+  nav { padding: 14px 24px; }
+  .nav-links { display: none; }
+  section { padding: 72px 24px; }
+  .trust-bar { padding: 18px 24px; gap: 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  footer { padding: 48px 24px 24px; }
+  .cta-section { padding: 72px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Skill<span>Bharat</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Courses</a></li>
+    <li><a href="#">Instructors</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <button class="nav-cta">Free Mein Shuru Karo</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span class="dot-live"></span> India Ka #1 Learning Platform</div>
+    <h1>Seekho. Badho.<br><em>Kamao.</em></h1>
+    <p class="hero-sub">Expert instructors se Hindi mein seekho — Digital Marketing, Coding, Design, Business aur zyada. Certificate pao, career banao.</p>
+    <div class="hero-btns">
+      <button class="btn-main">🎓 Courses Dekho</button>
+      <button class="btn-ghost">▶ Demo Lesson</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hstat-num">1.2L+</div><div class="hstat-label">Students</div></div>
+      <div><div class="hstat-num">340+</div><div class="hstat-label">Courses</div></div>
+      <div><div class="hstat-num">98%</div><div class="hstat-label">Success Rate</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hcard-thumb">
+        <div class="play-btn">▶</div>
+        <h3>Digital Marketing Masterclass</h3>
+      </div>
+      <div class="hcard-body">
+        <div class="course-meta">
+          <span class="meta-chip">📚 42 Lessons</span>
+          <span class="meta-chip">⏱ 18 Hours</span>
+          <span class="meta-chip">🏆 Certificate</span>
+          <span class="meta-chip">⭐ 4.9 Rating</span>
+        </div>
+        <div class="instructor">
+          <div class="inst-avatar">RG</div>
+          <div>
+            <div class="inst-name">Rahul Gupta</div>
+            <div class="inst-title">Ex-Google | 12 Saal Experience</div>
+          </div>
+        </div>
+        <div class="enroll-row">
+          <div class="price-tag">₹1,999 <small>₹4,999</small></div>
+          <button class="enroll-btn">Enroll Karo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🏅</span> ISO Certified Platform</div>
+  <div class="trust-item"><span class="trust-icon">🔒</span> 100% Secure Payment</div>
+  <div class="trust-item"><span class="trust-icon">↩</span> 30-Day Money Back</div>
+  <div class="trust-item"><span class="trust-icon">📱</span> Mobile + Desktop</div>
+  <div class="trust-item"><span class="trust-icon">🎓</span> Government Recognized Certificate</div>
+</div>
+
+<!-- COURSES -->
+<section class="courses-bg">
+  <div class="courses-header" style="max-width:1200px;margin:0 auto;">
+    <div>
+      <span class="section-tag">Popular Courses</span>
+      <h2>Sabse Zyada<br>Pasand Kiye Gaye Courses</h2>
+    </div>
+    <button class="btn-ghost" style="white-space:nowrap;">Sab Courses Dekho →</button>
+  </div>
+  <div class="courses-grid">
+    <div class="course-card">
+      <div class="course-thumb t1"><span class="course-badge">BESTSELLER</span>📱</div>
+      <div class="course-body">
+        <div class="course-cat">Digital Marketing</div>
+        <h3>Social Media Marketing Complete Course</h3>
+        <p>Instagram, Facebook, YouTube — sab platforms par marketing seekho.</p>
+        <div class="course-footer">
+          <div class="course-price">₹1,499</div>
+          <div class="course-info"><div class="stars">★★★★★</div><div>4.9 · 8.2K students</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-thumb t2"><span class="course-badge">NEW</span>💻</div>
+      <div class="course-body">
+        <div class="course-cat">Web Development</div>
+        <h3>Full Stack Web Dev — Hindi Mein</h3>
+        <p>HTML se React tak — zero se hero developer bano.</p>
+        <div class="course-footer">
+          <div class="course-price">₹2,499</div>
+          <div class="course-info"><div class="stars">★★★★★</div><div>4.8 · 5.6K students</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-thumb t3">📊</div>
+      <div class="course-body">
+        <div class="course-cat">Business & Finance</div>
+        <h3>Stock Market & Mutual Fund Basics</h3>
+        <p>Paise invest karna seekho — safe aur profitable tarike se.</p>
+        <div class="course-footer">
+          <div class="course-price">₹999</div>
+          <div class="course-info"><div class="stars">★★★★☆</div><div>4.7 · 12K students</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-thumb t4"><span class="course-badge">HOT</span>🎨</div>
+      <div class="course-body">
+        <div class="course-cat">Graphic Design</div>
+        <h3>Canva & Photoshop Masterclass</h3>
+        <p>Professional designs banao, freelancing shuru karo.</p>
+        <div class="course-footer">
+          <div class="course-price">₹1,299</div>
+          <div class="course-info"><div class="stars">★★★★★</div><div>4.9 · 9.1K students</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-thumb t5">🤖</div>
+      <div class="course-body">
+        <div class="course-cat">Artificial Intelligence</div>
+        <h3>AI Tools Se Karo Smart Work</h3>
+        <p>ChatGPT, Midjourney, AI tools — productive bano 10x.</p>
+        <div class="course-footer">
+          <div class="course-price">₹1,799</div>
+          <div class="course-info"><div class="stars">★★★★★</div><div>4.9 · 6.8K students</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-thumb t6">✍️</div>
+      <div class="course-body">
+        <div class="course-cat">Content Creation</div>
+        <h3>YouTube & Content Creator Bootcamp</h3>
+        <p>Channel grow karo, monetize karo — step-by-step guide.</p>
+        <div class="course-footer">
+          <div class="course-price">₹1,599</div>
+          <div class="course-info"><div class="stars">★★★★☆</div><div>4.8 · 7.3K students</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section style="text-align:center;">
+  <span class="section-tag">Kyun SkillBharat?</span>
+  <h2>Sirf Course Nahi —<br>Poora Career Support</h2>
+  <p class="section-sub" style="margin:12px auto 0;">Hum sirf videos nahi dete — hum aapki growth ensure karte hain.</p>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🎥</div>
+      <h3>HD Video Lessons</h3>
+      <p>Professional studio-quality videos, Hindi mein — offline bhi dekho.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🏆</div>
+      <h3>Govt. Recognized Certificate</h3>
+      <p>NSDC-linked certificates — resume mein add karo, job pao.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">👥</div>
+      <h3>Live Doubt Sessions</h3>
+      <p>Hafte mein 3 baar live Q&A — koi sawaal uljha nahi rahega.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">💼</div>
+      <h3>Placement Support</h3>
+      <p>Resume review, mock interviews aur job referrals — hum saath hain.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📱</div>
+      <h3>App Pe Seekho</h3>
+      <p>Android & iOS app — khin bhi, kabhi bhi seekho.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">♾️</div>
+      <h3>Lifetime Access</h3>
+      <p>Ek baar kharido — hamesha ke liye access. Updates bhi free.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTORS -->
+<section class="inst-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="section-tag">Our Experts</span>
+    <h2>India Ke Best<br>Instructors Se Seekho</h2>
+    <p class="section-sub">Sab instructors industry mein kaam kar chuke hain — theoretical nahi, real knowledge dete hain.</p>
+    <div class="inst-grid">
+      <div class="inst-card">
+        <div class="inst-pic">RG</div>
+        <h3>Rahul Gupta</h3>
+        <div class="inst-role">Digital Marketing Expert</div>
+        <div class="inst-stat">12 Courses · 42K Students</div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-pic">PS</div>
+        <h3>Priya Sharma</h3>
+        <div class="inst-role">Full Stack Developer</div>
+        <div class="inst-stat">8 Courses · 28K Students</div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-pic">AK</div>
+        <h3>Amit Kumar</h3>
+        <div class="inst-role">Finance & Investment</div>
+        <div class="inst-stat">5 Courses · 35K Students</div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-pic">NS</div>
+        <h3>Neha Singh</h3>
+        <div class="inst-role">Graphic Design & UI/UX</div>
+        <div class="inst-stat">10 Courses · 31K Students</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div style="max-width:1100px;margin:0 auto;text-align:center;">
+    <span class="section-tag">Success Stories</span>
+    <h2>Students Ki<br>Real Kahaniyan</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Digital Marketing course ke baad mujhe ek agency mein ₹35,000/month ki job mili. Instructor ne bilkul practically sikhaya!</p>
+      <div class="testi-name">Rohit Verma</div>
+      <div class="testi-course">Digital Marketing Course — Noida</div>
+      <div class="testi-stars">★★★★★</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Main ek housewife hoon. Canva course karke ab freelancing se ₹20,000 kama rahi hoon ghar baith ke. Bahut shukriya!</p>
+      <div class="testi-name">Anita Devi</div>
+      <div class="testi-course">Graphic Design Course — Jaipur</div>
+      <div class="testi-stars">★★★★★</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Web Dev course ke 6 mahine baad mera pehla freelance project mila — ₹45,000 ka! Investment 100x return ho gayi.</p>
+      <div class="testi-name">Saurabh Mishra</div>
+      <div class="testi-course">Full Stack Course — Lucknow</div>
+      <div class="testi-stars">★★★★★</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section style="text-align:center;">
+  <span class="section-tag">Pricing Plans</span>
+  <h2>Apne Budget Mein<br>Best Plan Chuno</h2>
+  <p class="section-sub" style="margin:12px auto 0;">Sab plans mein 30-day money back guarantee hai — koi risk nahi!</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-name">Basic</div>
+      <div class="price-num"><sup>₹</sup>499<sub>/month</sub></div>
+      <p class="price-desc">Shuruat karne ke liye perfect plan.</p>
+      <ul class="price-list">
+        <li><span class="check">✓</span> 5 Courses Access</li>
+        <li><span class="check">✓</span> HD Video Quality</li>
+        <li><span class="check">✓</span> Certificate</li>
+        <li><span class="cross">✗</span> Live Sessions</li>
+        <li><span class="cross">✗</span> Placement Support</li>
+      </ul>
+      <button class="price-btn-main">Start Karo</button>
+    </div>
+    <div class="price-card hot">
+      <div class="hot-label">⭐ Most Popular</div>
+      <div class="price-name">Pro</div>
+      <div class="price-num"><sup>₹</sup>999<sub>/month</sub></div>
+      <p class="price-desc">Serious learners ke liye — full support!</p>
+      <ul class="price-list">
+        <li><span class="check">✓</span> Unlimited Courses</li>
+        <li><span class="check">✓</span> Live Doubt Sessions</li>
+        <li><span class="check">✓</span> Govt. Certificate</li>
+        <li><span class="check">✓</span> Placement Support</li>
+        <li><span class="check">✓</span> Offline Download</li>
+      </ul>
+      <button class="price-btn-main">Pro Join Karo</button>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Lifetime</div>
+      <div class="price-num"><sup>₹</sup>4,999<sub> ek baar</sub></div>
+      <p class="price-desc">Ek baar invest karo — hamesha seekhte raho.</p>
+      <ul class="price-list">
+        <li><span class="check">✓</span> Sab Pro Features +</li>
+        <li><span class="check">✓</span> Lifetime Access</li>
+        <li><span class="check">✓</span> Future Courses Free</li>
+        <li><span class="check">✓</span> 1-on-1 Mentorship</li>
+        <li><span class="check">✓</span> Alumni Network</li>
+      </ul>
+      <button class="price-btn-main">Lifetime Lo</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="courses-bg" style="text-align:center;">
+  <span class="section-tag">FAQ</span>
+  <h2>Aksar Pooche Gaye<br>Sawaal</h2>
+  <div class="faq-list">
+    <div class="faq-item open">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Kya courses Hindi mein hain? <span class="icon">+</span>
+      </div>
+      <div class="faq-a">Haan! SkillBharat ke sab courses pure Hindi mein hain. Kuch courses Hinglish mein bhi hain taaki technical terms samajhne mein asani ho.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Certificate valid hai kya naukri ke liye? <span class="icon">+</span>
+      </div>
+      <div class="faq-a">Bilkul! Hamare certificates NSDC (National Skill Development Corporation) se linked hain aur government recognized hain. Bahut companies isko accept karti hain.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Mobile pe dekh sakte hain? <span class="icon">+</span>
+      </div>
+      <div class="faq-a">Haan! Android aur iOS dono ke liye hamare paas app hai. Videos offline bhi download kar sakte ho.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Refund milega agar course achha nahi laga? <span class="icon">+</span>
+      </div>
+      <div class="faq-a">30 din ke andar koi bhi reason batao — poora refund milega. No questions asked. Hum quality pe itna confident hain!</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Beginners ke liye bhi suitable hai? <span class="icon">+</span>
+      </div>
+      <div class="faq-a">Bilkul! Hamare sabhi courses zero se shuru hote hain. Koi bhi experience nahi chahiye — bas seekhne ki ichha chahiye!</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Apna Future Aaj<br>Shuru Karo!</h2>
+  <p>1,20,000 se zyada students apni zindagi badal chuke hain. Aapki baari hai — pehla lesson free hai!</p>
+  <button class="btn-white">🎓 Free Mein Shuru Karo</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="footer-logo">Skill<span>Bharat</span></span>
+      <p class="footer-desc">India ka #1 Hindi online learning platform — ghar baithe world-class education.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Courses</h4>
+      <ul>
+        <li><a href="#">Digital Marketing</a></li>
+        <li><a href="#">Web Development</a></li>
+        <li><a href="#">Graphic Design</a></li>
+        <li><a href="#">Finance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Hamare Baare Mein</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 SkillBharat. Sab rights reserved.</p>
+    <p style="color:#4a3f30;">Made with ❤️ in India 🇮🇳</p>
+  </div>
+</footer>
+
+</body>
+</html>
