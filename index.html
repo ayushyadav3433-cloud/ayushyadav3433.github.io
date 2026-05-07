@@ -801,6 +801,15 @@ footer {
     <p style="color:#4a3f30;">Made with ❤️ in India 🇮🇳</p>
   </div>
 </footer>
-
+<script>
+window.addEventListener('load', function() {
+  document.querySelectorAll('button, [class*="btn"], [class*="cta"], [class*="enroll"]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.open('https://wa.me/917668861896?text=Hello%2C%20mujhe%20course%20mein%20enroll%20karna%20hai', '_blank');
+    });
+  });
+});
+</script>
 </body>
 </html>
