@@ -461,7 +461,7 @@ footer {
         </div>
         <div class="enroll-row">
           <div class="price-tag">₹1,999 <small>₹4,999</small></div>
-          <button class="enroll-btn" onclick="showEnrollModal('Digital Marketing Masterclass', '₹1,999')">Enroll Karo</button>
+          <button class="enroll-btn" onclick="payNow('Digital Marketing Masterclass', 1999)">Enroll Karo</button>
         </div>
       </div>
     </div>
@@ -684,7 +684,7 @@ footer {
         <li><span class="cross">✗</span> Live Sessions</li>
         <li><span class="cross">✗</span> Placement Support</li>
       </ul>
-      <button class="price-btn-main" onclick="showEnrollModal('Basic Plan', '₹499/month')">Start Karo</button>
+      <button class="price-btn-main" onclick="payNow('Basic Plan', 499)">Start Karo</button>
     </div>
     <div class="price-card hot">
       <div class="hot-label">⭐ Most Popular</div>
@@ -698,7 +698,7 @@ footer {
         <li><span class="check">✓</span> Placement Support</li>
         <li><span class="check">✓</span> Offline Download</li>
       </ul>
-      <button class="price-btn-main" onclick="showEnrollModal('Pro Plan', '₹999/month')">Pro Join Karo</button>
+      <button class="price-btn-main" onclick="payNow('Pro Plan', 999)">Pro Join Karo</button>
     </div>
     <div class="price-card">
       <div class="price-name">Lifetime</div>
@@ -711,7 +711,7 @@ footer {
         <li><span class="check">✓</span> 1-on-1 Mentorship</li>
         <li><span class="check">✓</span> Alumni Network</li>
       </ul>
-      <button class="price-btn-main" onclick="showEnrollModal('Lifetime Plan', '₹4,999')">Lifetime Lo</button>
+      <button class="price-btn-main" onclick="payNow('Lifetime Plan', 4999)">Lifetime Lo</button>
     </div>
   </div>
 </section>
@@ -868,6 +868,14 @@ footer {
 </div>
 
 <script>
+function payNow(planName, amount) {
+  const upiId = '9997442076@ybl';
+  const name = 'SkillBharat';
+  const note = planName;
+  const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+  window.location.href = upiLink;
+}
+
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth' });
